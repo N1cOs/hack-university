@@ -15,6 +15,7 @@
                    android:layout_height="36dp"
                    android:src="@drawable/list_arrow"
                    android:layout_gravity="bottom|center"
+                   android:background="@drawable/bottom_bg"
         />
     </FrameLayout>
 
