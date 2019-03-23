@@ -1,10 +1,10 @@
 package ru.ifmo.se.client
 
 import android.Manifest
-import android.app.Activity
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -14,21 +14,12 @@ import com.here.android.mpa.common.*
 import com.here.android.mpa.mapping.Map
 import com.here.android.mpa.mapping.MapMarker
 import com.here.android.mpa.mapping.SupportMapFragment
-import java.io.File
-import android.graphics.drawable.BitmapDrawable
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.os.AsyncTask
-import android.text.TextUtils
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
-import java.lang.ref.WeakReference
-import ru.ifmo.se.protofiles.CommunicationProto
 import ru.ifmo.se.protofiles.CommunicatorGrpc
 import ru.ifmo.se.protofiles.EmptyMessage
 import ru.ifmo.se.protofiles.Musician
+import java.io.File
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.util.concurrent.TimeUnit
