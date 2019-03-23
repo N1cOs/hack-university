@@ -18,9 +18,9 @@
             android:hardwareAccelerated="true">
 
         <meta-data android:name="com.here.android.maps.appid"
-                   android:value="WNTRCz04c3VaNRotL39T"/>
+                   android:value="RhS7wJFuhDpQ2CBQuGb7"/>
         <meta-data android:name="com.here.android.maps.apptoken"
-                   android:value="84v8KQnDPJVd9amLHl-aqw"/>
+                   android:value="HSkBk6YbDvEd1wpPLC0ojA"/>
         <meta-data android:name="com.here.android.maps.license.key"
                    android:value="@string/license_key"/>
 
