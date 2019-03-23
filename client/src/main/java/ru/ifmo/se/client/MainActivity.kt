@@ -6,9 +6,12 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.AsyncTask
 import android.os.Bundle
+import android.support.annotation.UiThread
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.here.android.mpa.common.*
 import com.here.android.mpa.mapping.Map
@@ -105,6 +108,14 @@ class MainActivity : AppCompatActivity() {
                                 Log.i("ForEach", it.name)
                             }
                             map.addMapObjects(musiciansMarkers.toList())
+                            val copyMusicians = musicians.toTypedArray()
+                            if (copyMusicians.size != 0)
+                                this@MainActivity.runOnUiThread {
+                                    findViewById<RecyclerView>(R.id.list).apply {
+                                            adapter = MusicianAdapter(copyMusicians)
+                                            layoutManager = LinearLayoutManager(this@MainActivity)
+                                    }
+                                }
                             Thread.sleep(10000)
                         }
                     }.start()
