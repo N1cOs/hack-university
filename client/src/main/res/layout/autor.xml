@@ -5,27 +5,29 @@
               android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                                       xmlns:app="http://schemas.android.com/apk/res-auto"
                                        android:layout_width="match_parent"
                                        android:layout_height="?android:attr/actionBarSize"
-                                       xmlns:app="http://schemas.android.com/apk/res-auto"
                                        android:background="#00BBD3"
                                        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
                                        android:layout_gravity="center">
         <Button
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:background="@drawable/list_arrow"
+                android:background="@drawable/arrow_back"
                 android:drawableTint="@color/colorAccent"
                 android:layout_gravity="left"
+                android:rotation="0"
+                android:layout_marginLeft="26dp"
         />
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Musician"
                 android:textSize="25dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="30dp"
                 android:textColor="#ffffff"
+                android:fontFamily="@font/Roboto_Regular"
         />
     </android.support.v7.widget.Toolbar>
 
@@ -33,28 +35,55 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:weightSum="12">
+            android:weightSum="12"
+            android:background="#E601B9D0"
+    >
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:orientation="vertical"
-                      android:layout_weight="3"
+                      android:layout_weight="2.6"
                       android:weightSum="1">
+            <!--<FrameLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--&gt;-->
+
+
             <ImageView
                     android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/list_arrow"
-                    android:layout_weight="0.1"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="235dp"
+                    android:layout_weight="0.15"
+                    android:src="@drawable/face_i"
+                    android:layout_gravity="center"
+            />
+            <!--<ImageView-->
+            <!--android:id="@+id/bg"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@drawable/circle_shape"-->
+            <!--android:layout_weight="0.1"-->
+            <!--android:scaleType="fitXY"-->
+            <!--android:layout_gravity="center"-->
+            <!--/>-->
+
+            <!--</FrameLayout>-->
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Name"
-                    android:layout_weight="0.45"/>
+                    android:text="Future Star"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/Roboto_Regular"
+                    android:gravity="center" android:textSize="36sp"
+            />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="styles"
-                    android:layout_weight="0.45"/>
+                    android:text="Rock, hip-hop, rap"
+                    android:layout_weight="0.45"
+                    android:fontFamily="@font/Roboto_Regular"
+                    android:gravity="center"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent"
@@ -65,20 +94,29 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="styles"
-                    android:layout_weight="0.15"
-                    />
+                    android:text="Artist track-list"
+                    android:layout_weight="0.25"
+                    android:paddingLeft="26dp"
+                    android:textSize="22sp"
+                    android:textStyle="normal"
+                    android:fontFamily="@font/Roboto_Regular"
+                    android:gravity="bottom|left"
+
+            />
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="timestamp"
-                    android:layout_weight="0.85"/>
+                    android:text="Concert time:"
+                    android:layout_weight="0.75"
+                    android:paddingRight="26dp"
+                    android:gravity="right" android:fontFamily="@font/Roboto_Regular"
+            />
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:orientation="vertical"
-                      android:layout_weight="2">
+                      android:layout_weight="2.7">
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,14 +124,20 @@
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="track_name"
-                        android:layout_weight="0.15"
+                        android:text="Face - West falling down"
+                        android:layout_weight="0.25"
+                        android:paddingLeft="48dp" android:fontFamily="@font/Roboto_Regular"
+
                 />
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="is_palying now"
-                        android:layout_weight="0.85"/>
+                        android:text="accordingly playing now"
+                        android:layout_weight="0.75"
+                        android:gravity="right"
+                        android:paddingRight="26dp" android:fontFamily="@font/Roboto_Regular"
+
+                />
 
             </LinearLayout>
             <LinearLayout
@@ -103,42 +147,161 @@
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="track_namess"
-                        android:layout_weight="0.15"
-                />
+                        android:text="Kirkorov - Zayka moya"
+                        android:layout_weight="0.25"
+                        android:paddingLeft="48dp"
+                        android:fontFamily="@font/Roboto_Regular"/>
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="is_palying now"
-                        android:layout_weight="0.85"/>
+                        android:text=""
+                        android:layout_weight="0.75"
+                        android:gravity="right"
+                        android:paddingRight="26dp"
+                        android:fontFamily="@font/Roboto_Regular"/>
 
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
-                      android:layout_weight="3"
-                      android:orientation="horizontal">
-            <ImageView android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:src="@drawable/list_arrow"
-                       android:layout_weight="1"/>
-            <ImageView android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:src="@drawable/list_arrow"
-                       android:layout_weight="1"/>
-            <ImageView android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:src="@drawable/list_arrow"
-                       android:layout_weight="1"/>
-            <ImageView android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:src="@drawable/list_arrow"
-                       android:layout_weight="1"/>
-            <ImageView android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:src="@drawable/list_arrow"
-                       android:layout_weight="1"/>
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="36dp"
+
+                      android:layout_weight="3.55"
+                      android:weightSum="5"
+                      android:layout_marginLeft="26dp"
+                      android:layout_marginRight="26dp">
+            <LinearLayout android:orientation="horizontal"
+                          android:weightSum="4"
+                          android:layout_weight="1.6" android:layout_width="match_parent"
+                          android:layout_height="match_parent">
+                <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                >
+                    <ImageView android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:layout_weight="1"
+                               android:background="@drawable/rounded_rect_green"
+                               android:layout_marginRight="6dp"
+                    />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/myImageView"
+                            android:layout_alignTop="@+id/myImageView"
+                            android:layout_alignRight="@+id/myImageView"
+                            android:layout_alignBottom="@+id/myImageView"
+                            android:layout_margin="1dp"
+                            android:layout_gravity="center"
+                            android:textSize="22sp"
+                            android:textColor="#ffffff"
+                            android:text="1$"/>
+                </FrameLayout>
+
+                <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1">
+                    <ImageView android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:background="@drawable/rounded_rect_yellow"
+                               android:layout_marginRight="6dp"
+                               android:layout_weight="1"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/myImageView"
+                            android:layout_alignTop="@+id/myImageView"
+                            android:layout_alignRight="@+id/myImageView"
+                            android:layout_alignBottom="@+id/myImageView"
+                            android:layout_margin="1dp"
+                            android:layout_gravity="center"
+                            android:textSize="22sp"
+                            android:textColor="#ffffff"
+                            android:text="2$"/>
+                </FrameLayout>
+
+                <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1">
+                    <ImageView android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:background="@drawable/rounded_rect_orange"
+                               android:layout_marginRight="6dp"
+                               android:layout_weight="1"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/myImageView"
+                            android:layout_alignTop="@+id/myImageView"
+                            android:layout_alignRight="@+id/myImageView"
+                            android:layout_alignBottom="@+id/myImageView"
+                            android:layout_margin="1dp"
+                            android:layout_gravity="center"
+                            android:textSize="22sp"
+                            android:textColor="#ffffff"
+                            android:text="5$"/>
+                </FrameLayout>
+                <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1">
+                    <ImageView android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:background="@drawable/rounded_rect_red"
+                               android:layout_marginRight="6dp"
+                               android:layout_weight="1"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/myImageView"
+                            android:layout_alignTop="@+id/myImageView"
+                            android:layout_alignRight="@+id/myImageView"
+                            android:layout_alignBottom="@+id/myImageView"
+                            android:layout_margin="1dp"
+                            android:layout_gravity="center"
+                            android:textSize="22sp"
+                            android:textColor="#ffffff"
+                            android:text="10$"/>
+                </FrameLayout>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_weight="3.4"
+                          android:layout_width="match_parent" android:layout_height="match_parent">
+                <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1">
+                    <ImageView android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:background="@drawable/rounded_rect_blue_squared"
+                    />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/myImageView"
+                            android:layout_alignTop="@+id/myImageView"
+                            android:layout_alignRight="@+id/myImageView"
+                            android:layout_alignBottom="@+id/myImageView"
+                            android:layout_margin="1dp"
+                            android:layout_gravity="center"
+                            android:textSize="22sp"
+                            android:textColor="#ffffff"
+                            android:text="DONATE $"/>
+                </FrameLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
 
