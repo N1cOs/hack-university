@@ -1,6 +1,7 @@
 package ru.ifmo.se.client
 
 import android.Manifest
+import android.app.Activity
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -14,6 +15,23 @@ import com.here.android.mpa.mapping.Map
 import com.here.android.mpa.mapping.MapMarker
 import com.here.android.mpa.mapping.SupportMapFragment
 import java.io.File
+import android.graphics.drawable.BitmapDrawable
+import android.opengl.ETC1.getHeight
+import android.opengl.ETC1.getWidth
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.os.AsyncTask
+import android.text.TextUtils
+import io.grpc.ManagedChannel
+import io.grpc.ManagedChannelBuilder
+import java.lang.ref.WeakReference
+import ru.ifmo.se.protofiles.CommunicationProto
+import ru.ifmo.se.protofiles.CommunicatorGrpc
+import ru.ifmo.se.protofiles.EmptyMessage
+import ru.ifmo.se.protofiles.Musician
+import java.io.PrintWriter
+import java.io.StringWriter
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var map: Map
     private lateinit var mapFragment: SupportMapFragment
     //ToDo: take coordinates from server
-    private lateinit var musicians: List<GeoCoordinate>
+    val musicians = arrayListOf<Musician>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +68,7 @@ class MainActivity : AppCompatActivity() {
             val permissions = missingPermissions.toTypedArray()
             ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_ASK_PERMISSIONS)
         }
+        GrpcTask(musicians).execute()
         initMap()
     }
 
@@ -78,11 +97,21 @@ class MainActivity : AppCompatActivity() {
                     drawable.draw(canvas)
 
                     val musiciansMarkers = ArrayList<MapMarker>()
-                    musicians = arrayListOf(GeoCoordinate(59.9343, 30.3351), GeoCoordinate(59.9340, 30.3348))
+
+//                    musicians.addAll(arrayListOf(GeoCoordinate(59.9343, 30.3351), GeoCoordinate(59.9340, 30.3348)))
+
+
+                    Log.i("forEach", "Before")
+                    while (musicians.isEmpty()) {
+                        Thread.sleep(1000)
+                        Log.i("ForEach", "Sleep")
+                    }
+
                     musicians.forEach {
                         val image = Image()
                         image.bitmap = musicianIcon
-                        musiciansMarkers.add(MapMarker(it, image))
+                        musiciansMarkers.add(MapMarker(GeoCoordinate(it.xCoord, it.yCoord), image))
+                        Log.i("ForEach", it.name)
                     }
                     map.addMapObjects(musiciansMarkers.toList())
                 }
@@ -92,4 +121,67 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private class GrpcTask constructor(_musicians: ArrayList<Musician>) : AsyncTask<Void, Void, String>() {
+        private val musicians = _musicians
+        private var channel: ManagedChannel? = null
+
+        override fun doInBackground(vararg poof: Void) : String {
+//            val host = "10.100.110.201"
+            val host = "192.168.43.230"
+            val port = 50051
+            return try {
+                channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build()
+                val stub = CommunicatorGrpc.newBlockingStub(channel)
+                val request = EmptyMessage.newBuilder().build()
+                val reply = stub.poll(request)
+                val tempMusicians = arrayListOf<Musician>()
+                Log.i("ForThread", "Before")
+                for (musician in reply) {
+                    musicians.add(musician)
+                    Log.i("ForThread", musician.name)
+                }
+                "OK"
+            } catch (e: Exception) {
+                val sw = StringWriter()
+                val pw = PrintWriter(sw)
+                e.printStackTrace(pw)
+                pw.flush()
+                "Failed... : %s".format(sw)
+            }
+        }
+
+        override fun onPostExecute(poof: String) {
+            try {
+                channel?.shutdown()?.awaitTermination(1, TimeUnit.SECONDS)
+            } catch (e: InterruptedException) {
+                Thread.currentThread().interrupt()
+            }
+        }
+    }
+
 }
+
+/////
+//class HelloworldActivity : AppCompatActivity(), View.OnClickListener {
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_helloworld)
+//        grpc_response_text!!.movementMethod = ScrollingMovementMethod()
+//        send_button!!.setOnClickListener(this)
+//    }
+//
+//    override fun onClick(view: View) {
+//        (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+//            .hideSoftInputFromWindow(host_edit_text!!.windowToken, 0)
+//        send_button!!.isEnabled = false
+//        grpc_response_text!!.text = ""
+//        GrpcTask(this)
+//            .execute(
+//                host_edit_text!!.text.toString(),
+//                message_edit_text!!.text.toString(),
+//                port_edit_text!!.text.toString())
+//    }
+//
+//}
+////
