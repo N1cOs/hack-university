@@ -1,4 +1,4 @@
-package ru.ifmo.se.musician
+package ru.ifmo.se.client
 
 import org.junit.Test
 
