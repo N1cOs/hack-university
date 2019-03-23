@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
             val permissions = missingPermissions.toTypedArray()
             ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_ASK_PERMISSIONS)
         }
-        GrpcTask(musicians).execute()
         initMap()
     }
 
@@ -87,24 +86,28 @@ class MainActivity : AppCompatActivity() {
                     drawable.setBounds(0, 0, canvas.width, canvas.height)
                     drawable.draw(canvas)
 
-                    val musiciansMarkers = ArrayList<MapMarker>()
 
 //                    musicians.addAll(arrayListOf(GeoCoordinate(59.9343, 30.3351), GeoCoordinate(59.9340, 30.3348)))
 
 
                     Log.i("forEach", "Before")
-                    while (musicians.isEmpty()) {
-                        Thread.sleep(1000)
-                        Log.i("ForEach", "Sleep")
-                    }
+                    val musiciansMarkers = ArrayList<MapMarker>()
+                    Thread {
+                        while(true) {
+                            musiciansMarkers.clear()
+                            map.removeMapObjects(musiciansMarkers.toList())
 
-                    musicians.forEach {
-                        val image = Image()
-                        image.bitmap = musicianIcon
-                        musiciansMarkers.add(MapMarker(GeoCoordinate(it.xCoord, it.yCoord), image))
-                        Log.i("ForEach", it.name)
-                    }
-                    map.addMapObjects(musiciansMarkers.toList())
+                            GrpcTask(musicians).execute()
+                            musicians.forEach {
+                                val image = Image()
+                                image.bitmap = musicianIcon
+                                musiciansMarkers.add(MapMarker(GeoCoordinate(it.xCoord, it.yCoord), image))
+                                Log.i("ForEach", it.name)
+                            }
+                            map.addMapObjects(musiciansMarkers.toList())
+                            Thread.sleep(10000)
+                        }
+                    }.start()
                 }
                 else {
                     Log.e("map.init", it.name)
@@ -128,6 +131,7 @@ class MainActivity : AppCompatActivity() {
                 val reply = stub.poll(request)
                 val tempMusicians = arrayListOf<Musician>()
                 Log.i("ForThread", "Before")
+                musicians.clear()
                 for (musician in reply) {
                     musicians.add(musician)
                     Log.i("ForThread", musician.name)
