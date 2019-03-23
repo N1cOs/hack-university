@@ -13,6 +13,12 @@ import com.here.android.mpa.mapping.Map
 import com.here.android.mpa.mapping.MapMarker
 import com.here.android.mpa.mapping.SupportMapFragment
 import java.io.File
+import android.graphics.drawable.BitmapDrawable
+import android.opengl.ETC1.getHeight
+import android.opengl.ETC1.getWidth
+import android.graphics.Bitmap
+import android.graphics.Canvas
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,7 +72,15 @@ class MainActivity : AppCompatActivity() {
                     PositioningManager.getInstance().start(PositioningManager.LocationMethod.GPS_NETWORK)
                     mapFragment.positionIndicator.isVisible = true
 
-                    val musicianIcon = BitmapFactory.decodeResource(resources, R.drawable.musician)
+                    val drawable = resources.getDrawable(R.drawable.musician)
+                    val musicianIcon = Bitmap.createBitmap(
+                        drawable.getIntrinsicWidth(),
+                        drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888
+                    )
+                    val canvas = Canvas(musicianIcon)
+                    drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight())
+                    drawable.draw(canvas)
+
                     val musiciansMarkers = ArrayList<MapMarker>()
                     musicians = arrayListOf(GeoCoordinate(59.9343, 30.3351), GeoCoordinate(59.9340, 30.3348))
                     musicians.forEach {
@@ -74,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                         image.bitmap = musicianIcon
                         musiciansMarkers.add(MapMarker(it, image))
                     }
-
+                    map.addMapObjects(musiciansMarkers.toList())
                 }
                 else {
                     Log.e("map.init", it.name)
