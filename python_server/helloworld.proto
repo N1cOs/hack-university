@@ -32,9 +32,10 @@ message Musician {
   string name = 1;
   repeated string generes = 2;
   repeated string tracks = 3;
-  string timestamp = 4;
-  double x_coord = 5;
-  double y_coord = 6;
+  string start_time = 4;
+  string end_time = 5;
+  double x_coord = 6;
+  double y_coord = 7;
 }
 
 message EmptyMessage {
