@@ -18,13 +18,15 @@
             android:hardwareAccelerated="true">
 
         <meta-data android:name="com.here.android.maps.appid"
-                   android:value="WNTRCz04c3VaNRotL39T"/>
+                   android:value="tXzLIDmBp6hTIz8rzMkh"/>
         <meta-data android:name="com.here.android.maps.apptoken"
-                   android:value="84v8KQnDPJVd9amLHl-aqw"/>
+                   android:value="Z3gOQf27pSb_Kx9FuOCvXA"/>
         <meta-data android:name="com.here.android.maps.license.key"
                    android:value="@string/license_key"/>
 
-        <activity android:name=".MainActivity">
+        <activity
+                android:name=".MainActivity"
+                android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

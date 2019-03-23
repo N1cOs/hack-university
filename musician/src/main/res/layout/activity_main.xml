@@ -1,24 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:gravity="bottom"
+        sothree:umanoPanelHeight="36dp"
+        sothree:umanoShadowHeight="0dp"
+        sothree:umanoParallaxOffset="0dp"
+        sothree:umanoDragView="@+id/dragView"
+        sothree:umanoOverlay="true"
+        sothree:umanoScrollableView="@+id/list">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <fragment class="com.here.android.mpa.mapping.SupportMapFragment"
+                  android:id="@+id/mapfragment"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"/>
+    </FrameLayout>
 
-    <fragment class="com.here.android.mpa.mapping.SupportMapFragment"
-              android:id="@+id/mapfragment"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="false"
+            android:id="@+id/dragView">
 
-</LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:src="@drawable/list_arrow"
+                    android:background="@drawable/bottom_bg"
+                    android:layout_gravity="bottom|center"/>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/list"
+                android:background="@color/colorListView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>
