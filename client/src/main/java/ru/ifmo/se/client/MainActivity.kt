@@ -2,7 +2,8 @@ package ru.ifmo.se.client
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -13,11 +14,6 @@ import com.here.android.mpa.mapping.Map
 import com.here.android.mpa.mapping.MapMarker
 import com.here.android.mpa.mapping.SupportMapFragment
 import java.io.File
-import android.graphics.drawable.BitmapDrawable
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
-import android.graphics.Bitmap
-import android.graphics.Canvas
 
 
 class MainActivity : AppCompatActivity() {
@@ -72,13 +68,13 @@ class MainActivity : AppCompatActivity() {
                     PositioningManager.getInstance().start(PositioningManager.LocationMethod.GPS_NETWORK)
                     mapFragment.positionIndicator.isVisible = true
 
-                    val drawable = resources.getDrawable(R.drawable.musician)
+                    val drawable = resources.getDrawable(R.drawable.musician, theme)
                     val musicianIcon = Bitmap.createBitmap(
-                        drawable.getIntrinsicWidth(),
-                        drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888
+                        drawable.intrinsicWidth,
+                        drawable.intrinsicHeight, Bitmap.Config.ARGB_8888
                     )
                     val canvas = Canvas(musicianIcon)
-                    drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight())
+                    drawable.setBounds(0, 0, canvas.width, canvas.height)
                     drawable.draw(canvas)
 
                     val musiciansMarkers = ArrayList<MapMarker>()
