@@ -18,6 +18,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Gravity
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.here.android.mpa.common.*
@@ -117,15 +118,23 @@ class MainActivity : AppCompatActivity() {
                                         // map marker, so we can do something with it
                                         // (like change the visibility, or more
                                         // marker-specific actions)
+                                        val x =(viewObj as MapMarker).coordinate.latitude
+                                        val y =(viewObj as MapMarker).coordinate.longitude
+
                                         var tempMusicians = arrayListOf<Musician>().toTypedArray()
                                         while (tempMusicians.size == 0)
                                             if (!musicians.isEmpty()) {
                                                 tempMusicians = musicians.toTypedArray()
                                             }
+                                        Log.i("ForX", x.toString())
+                                        Log.i("ForY", y.toString())
                                         for (musician in tempMusicians) {
-                                            createPopUp(musician)
-                                            return false
+                                            if (musician.xCoord == x && musician.yCoord == y) {
+                                                createPopUp(musician)
+                                                return false
+                                            }
                                         }
+                                        return false
                                     }
                                 }
                             /*
@@ -150,6 +159,16 @@ class MainActivity : AppCompatActivity() {
                             pw.setContentView(R.layout.autor)
 //                            pw.setCanceledOnTouchOutside(false)
                             pw.show()
+
+                            val singerIcon = pw.findViewById<ImageView>(R.id.image)
+                            val id = when (musician.name) {
+                                "Face" -> R.drawable.face
+                                "Dog" -> R.drawable.snoop
+                                "Ed Sheeran" -> R.drawable.ed_sheeran
+                                "Naruto" -> R.drawable.naruto
+                                else -> R.drawable.default_profile_pic
+                            }
+                            singerIcon.setImageResource(id)
 
 
                             val singerName = pw.findViewById<TextView>(R.id.singer_name)
@@ -296,23 +315,25 @@ class MainActivity : AppCompatActivity() {
                             map.removeMapObjects(musiciansMarkers.toList())
 
                             GrpcTask(musicians).execute()
-                            musicians.forEach {
-                                val image = Image()
-                                image.bitmap = musicianIcon
-                                val marker = MapMarker(GeoCoordinate(it.xCoord, it.yCoord), image)
-                                musiciansMarkers.add(marker)
-                                Log.i("ForEach", it.name)
-                            }
-                            map.addMapObjects(musiciansMarkers.toList())
-                            val copyMusicians = musicians.toTypedArray()
-                            if (copyMusicians.size != 0)
-                                this@MainActivity.runOnUiThread {
-                                    findViewById<RecyclerView>(R.id.list).apply {
+                            if (musicians != null && !musicians.isEmpty()) {
+                                musicians.forEach {
+                                    val image = Image()
+                                    image.bitmap = musicianIcon
+                                    val marker = MapMarker(GeoCoordinate(it.xCoord, it.yCoord), image)
+                                    musiciansMarkers.add(marker)
+                                    Log.i("ForEach", it.name)
+                                }
+                                map.addMapObjects(musiciansMarkers.toList())
+                                val copyMusicians = musicians.toTypedArray()
+                                if (copyMusicians.size != 0)
+                                    this@MainActivity.runOnUiThread {
+                                        findViewById<RecyclerView>(R.id.list).apply {
                                             adapter = MusicianAdapter(copyMusicians, this@MainActivity, windowManager)
                                             layoutManager = LinearLayoutManager(this@MainActivity)
+                                        }
                                     }
-                                }
-                            Thread.sleep(10000)
+                            }
+                            Thread.sleep(5000)
                         }
                     }.start()
 

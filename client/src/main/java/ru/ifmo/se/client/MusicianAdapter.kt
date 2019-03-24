@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import ru.ifmo.se.protofiles.Musician
@@ -33,6 +34,21 @@ class MusicianAdapter(private val list: Array<Musician>, val context: Context, v
         holder.types.text = musician.generesList.joinToString()
         holder.startTime.text = musician.startTime
         holder.endTime.text = musician.endTime
+        val id = when (musician.name) {
+            "Face" -> R.drawable.face
+            "Dog" -> R.drawable.snoop
+            "Ed Sheeran" -> R.drawable.ed_sheeran
+            "Naruto" -> R.drawable.naruto
+            else -> R.drawable.default_profile_pic
+        }
+        val changeImRunnable: Runnable = object : Runnable {
+            override fun run() {
+                holder.singerIcon.setImageResource(id)
+                holder.singerIcon.requestLayout()
+            }
+        }
+
+        holder.singerIcon.post(changeImRunnable)
 
 
         holder.view.setOnClickListener({
@@ -41,6 +57,23 @@ class MusicianAdapter(private val list: Array<Musician>, val context: Context, v
             pw.getWindow().setLayout(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
             pw.show()
 
+            val singerIcon = pw.findViewById<ImageView>(R.id.image)
+            val id = when (musician.name) {
+                "Face" -> R.drawable.face
+                "Dog" -> R.drawable.snoop
+                "Ed Sheeran" -> R.drawable.ed_sheeran
+                "Naruto" -> R.drawable.naruto
+                else -> R.drawable.default_profile_pic
+            }
+            val changeImRunnable: Runnable = object : Runnable {
+                override fun run() {
+//                    singerIcon.setBackgroundResource(id)
+                    singerIcon.setImageResource(id)
+                    singerIcon.requestLayout()
+                }
+            }
+
+            singerIcon.post(changeImRunnable)
 
             val singerName = pw.findViewById<TextView>(R.id.singer_name)
             singerName.text = musician.name
@@ -115,5 +148,6 @@ class MusicianAdapter(private val list: Array<Musician>, val context: Context, v
         val types = view.findViewById<TextView>(R.id.musicianTypes)
         val startTime = view.findViewById<TextView>(R.id.startTime)
         val endTime = view.findViewById<TextView>(R.id.endTime)
+        val singerIcon = view.findViewById<ImageView>(R.id.musicianImage)
     }
 }
