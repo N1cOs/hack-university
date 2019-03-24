@@ -1,6 +1,6 @@
 <com.sothree.slidinguppanel.SlidingUpPanelLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        xmlns:sothree="http://schemas.android.com/apk/res-auto" xmlns:app="http://schemas.android.com/tools"
         android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,6 +20,19 @@
                   android:id="@+id/mapfragment"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"/>
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/profileButton"
+                app:fabSize="normal"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="48dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:foreground="@drawable/add_white"
+                android:backgroundTint="@color/colorListView"
+                android:padding="0dp"
+
+        />
     </FrameLayout>
 
     <LinearLayout

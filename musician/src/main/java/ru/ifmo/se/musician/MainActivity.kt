@@ -1,17 +1,20 @@
 package ru.ifmo.se.musician
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.AsyncTask
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.widget.Button
 import com.here.android.mpa.common.*
 import com.here.android.mpa.mapping.Map
 import com.here.android.mpa.mapping.MapMarker
@@ -45,6 +48,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         checkPermissions()
+        findViewById<FloatingActionButton>(R.id.profileButton).setOnClickListener {
+            val intent = Intent(this, MainMusician::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun checkPermissions() {
