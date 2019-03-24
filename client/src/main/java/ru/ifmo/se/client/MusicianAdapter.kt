@@ -56,38 +56,24 @@ class MusicianAdapter(private val list: Array<Musician>, val context: Context, v
 
             val littleList = pw.findViewById<LinearLayout>(R.id.little_list)
             for (sing in musician.tracksList) {
-                val newLayout = LinearLayout(pw.context)
-                newLayout.layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    1f)
-
                 val textView = TextView(pw.context)
                 textView.layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    0.25f)
+                    LinearLayout.LayoutParams.WRAP_CONTENT)
                 textView.text = sing
                 textView.setTextColor(argb(0xff, 0x00, 0x00, 0x00))
                 textView.setPadding(58, 4, 4, 4)
                 val typeface = ResourcesCompat.getFont(pw.context, R.font.roboto_regular)
                 textView.setTypeface(typeface)
-
-                val playingNowView = TextView(pw.context)
-                playingNowView.layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    0.75f)
-//                playingNowView.text = sing
-                playingNowView.setTextColor(argb(0xff, 0x00, 0x00, 0x00))
-                playingNowView.setPadding(4, 4, 26, 4)
-                playingNowView.setTypeface(typeface)
-
-                newLayout.addView(textView)
-                newLayout.addView(playingNowView)
-                littleList.addView(newLayout)
+                littleList.addView(textView)
             }
 
+//            <!--<TextView-->
+//            <!--android:layout_width="match_parent"-->
+//            <!--android:layout_height="wrap_content"-->
+//            <!--android:text="Face - West falling down"-->
+//            <!--android:textColor="#FF000000"-->
+//            <!--android:paddingLeft="48dp" android:fontFamily="@font/roboto_regular_sh"-->
 
 
 //            <LinearLayout

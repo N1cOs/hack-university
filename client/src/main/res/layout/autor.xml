@@ -155,11 +155,16 @@
                     <!--android:weightSum="1">-->
                 <!--<TextView-->
                         <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
                         <!--android:text="Face - West falling down"-->
-                        <!--android:layout_weight="0.25"-->
                         <!--android:textColor="#FF000000"-->
                         <!--android:paddingLeft="48dp" android:fontFamily="@font/roboto_regular_sh"-->
+            <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Face - West falling down"-->
+                    <!--android:textColor="#FF000000"-->
+                    <!--android:paddingLeft="48dp" android:fontFamily="@font/roboto_regular_sh"-->
 
                 <!--/>-->
                 <!--<TextView-->
