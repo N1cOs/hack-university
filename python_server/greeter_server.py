@@ -23,10 +23,10 @@ import helloworld_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
-musicians = [helloworld_pb2.Musician(name="OLOL", generes=["gener1", "gener2"], tracks=["zapad", "lol2"] , start_time="12:00", end_time="13:00", x_coord=59.9343, y_coord=30.3361),
-            helloworld_pb2.Musician(name="OLOL2", generes=["gener2", "gener3"], tracks=["zapad", "lol2"], start_time="13:00", end_time="14:00", x_coord=59.9323, y_coord=30.3321),
-            helloworld_pb2.Musician(name="OLOL2", generes=["gener2", "gener3"], tracks=["zapad", "lol2"], start_time="10:00", end_time="14:00", x_coord=59.9313, y_coord=30.3351),
-            helloworld_pb2.Musician(name="OLOL2", generes=["gener2", "gener3", "gener2"], tracks=["zapad", "lol2"], start_time="13:00", end_time="14:00", x_coord=59.9323, y_coord=30.3351)]
+musicians = [helloworld_pb2.Musician(name="Face", generes=["gener1", "gener2"], tracks=["zapad", "lol2"] , start_time="12:00", end_time="13:00", x_coord=59.9343, y_coord=30.3361),
+            helloworld_pb2.Musician(name="Dog", generes=["gener2", "gener3"], tracks=["zapad", "lol2"], start_time="13:00", end_time="14:00", x_coord=59.9323, y_coord=30.3321),
+            helloworld_pb2.Musician(name="Naruto", generes=["gener2", "gener3"], tracks=["zapad", "lol2"], start_time="10:00", end_time="14:00", x_coord=59.9313, y_coord=30.3351),
+            helloworld_pb2.Musician(name="You", generes=["gener2", "gener3", "gener2"], tracks=["zapad", "lol2"], start_time="13:00", end_time="14:00", x_coord=59.9323, y_coord=30.3351)]
 
   
 class Greeter(helloworld_pb2_grpc.CommunicatorServicer):
@@ -38,7 +38,9 @@ class Greeter(helloworld_pb2_grpc.CommunicatorServicer):
             yield mus #returns (stream Musician) {}
 
     def Send(self, request, context): # Musician
+        print("NEW!!!!!!!!")
         musicians.append(request) # returns (EmptyMessage) {}
+        return helloworld_pb2.EmptyMessage()
 
 
 def serve():
