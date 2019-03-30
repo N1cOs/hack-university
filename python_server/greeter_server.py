@@ -39,18 +39,15 @@ class Greeter(helloworld_pb2_grpc.CommunicatorServicer):
             yield mus #returns (stream Musician) {}
 
     def Send(self, request, context): # Musician
-        print("LOLOLO!!!!!!!!")
-        if self.i == 0:
-            print("NEW!!!!!!!!")
-            musicians.append(request) # returns (EmptyMessage) {}
-            self.i += 1
+        print("NEW!!!!!!!!")
+        musicians.append(request) # returns (EmptyMessage) {}
         return helloworld_pb2.EmptyMessage()
 
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     helloworld_pb2_grpc.add_CommunicatorServicer_to_server(Greeter(), server)
-    server.add_insecure_port('[::]:50051')
+    server.add_insecure_port('0.0.0.0:50051')
     server.start()
     try:
         while True:
