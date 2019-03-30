@@ -24,6 +24,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.here.android.mpa.cluster.ClusterLayer
 import com.here.android.mpa.common.*
 import com.here.android.mpa.mapping.*
 import com.here.android.mpa.mapping.Map
@@ -283,7 +284,7 @@ class MainActivity : AppCompatActivity() {
                     PositioningManager.getInstance().start(PositioningManager.LocationMethod.GPS_NETWORK)
                     mapFragment.positionIndicator.isVisible = true
 
-                    val drawable = resources.getDrawable(R.drawable.musician, theme)
+                    val drawable = resources.getDrawable(R.drawable.electric_guitar, theme)
                     val musicianIcon = Bitmap.createBitmap(
                         drawable.intrinsicWidth,
                         drawable.intrinsicHeight, Bitmap.Config.ARGB_8888
@@ -293,28 +294,43 @@ class MainActivity : AppCompatActivity() {
                     drawable.draw(canvas)
 
                     Log.i("forEach", "Before")
-                    val musiciansMarkers = ArrayList<MapMarker>()
+                    var musiciansMarkers = ArrayList<MapMarker>()
+                    val tempMusiciansMarkers = ArrayList<MapMarker>()
+                    val cl = ClusterLayer()
                     Thread {
                         while(true) {
-                            musiciansMarkers.clear()
-                            map.removeMapObjects(musiciansMarkers.toList())
+                            //map.removeMapObjects(musiciansMarkers.toList())
+
+                            Log.i("forEach", "Executing")
 
                             GrpcTask(musicians).execute()
+                            tempMusiciansMarkers.clear()
                             musicians.forEach {
                                 val image = Image()
                                 image.bitmap = musicianIcon
-                                musiciansMarkers.add(MapMarker(GeoCoordinate(it.xCoord, it.yCoord), image))
+                                tempMusiciansMarkers.add(MapMarker(GeoCoordinate(it.xCoord, it.yCoord), image))
                                 Log.i("ForEach", it.name)
                             }
-                            map.addMapObjects(musiciansMarkers.toList())
-                            val copyMusicians = musicians.toTypedArray()
-                            if (copyMusicians.isNotEmpty())
-                                this@MainActivity.runOnUiThread {
-                                    findViewById<RecyclerView>(R.id.list).apply {
-                                        adapter = MusicianAdapter(copyMusicians)
-                                        layoutManager = LinearLayoutManager(this@MainActivity)
+                            if (!tempMusiciansMarkers.isEmpty()) {
+                                val markers = cl.markers
+                                cl.removeMarkers(markers)
+
+//                                cl.removeMarkers(musiciansMarkers.toList())
+//                                map.removeClusterLayer(cl)
+                                musiciansMarkers = tempMusiciansMarkers
+//                                musiciansMarkers.clear()
+                                //map.addMapObjects(musiciansMarkers.toList())
+                                cl.addMarkers(musiciansMarkers.toList())
+                                map.addClusterLayer(cl)
+                                val copyMusicians = musicians.toTypedArray()
+                                if (copyMusicians.isNotEmpty())
+                                    this@MainActivity.runOnUiThread {
+                                        findViewById<RecyclerView>(R.id.list).apply {
+                                            adapter = MusicianAdapter(copyMusicians, this@MainActivity, windowManager)
+                                            layoutManager = LinearLayoutManager(this@MainActivity)
+                                        }
                                     }
-                                }
+                            }
                             Thread.sleep(10000)
                         }
                     }.start()
@@ -332,7 +348,8 @@ private class GrpcTask constructor(_musicians: ArrayList<Musician>) : AsyncTask<
     private var channel: ManagedChannel? = null
 
     override fun doInBackground(vararg poof: Void) : String {
-        val host = "10.100.110.201"
+//        val host = "10.100.110.201"
+        val host = "35.228.95.2"
 //        val host = "192.168.43.230"
         val port = 50051
         return try {
@@ -346,6 +363,7 @@ private class GrpcTask constructor(_musicians: ArrayList<Musician>) : AsyncTask<
                 musicians.add(musician)
                 Log.i("ForThread", musician.name)
             }
+            Log.i("ForThread", "OK")
             "OK"
         } catch (e: Exception) {
             val sw = StringWriter()

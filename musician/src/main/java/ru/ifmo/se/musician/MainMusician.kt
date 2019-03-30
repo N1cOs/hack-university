@@ -37,6 +37,7 @@ class MainMusician : AppCompatActivity() {
 
             val request = GeocodeRequest2(address).setSearchArea(GeoCoordinate(59.9343, 30.3351), 10)
             request.execute(MyResultListener(builder))
+            finish()
         }
 
 
@@ -44,7 +45,7 @@ class MainMusician : AppCompatActivity() {
 //
 //            val signArea = findViewById<TextInputEditText>(R.id.sing_appender).text.toString()
 //            if (!signArea.equals("")) {
-//                val address = findViewById<ListView>(R.id.tracks)
+//                val address = findViewById<ListView>(R.id.traks)
 //
 //                val textView = TextView(this)
 //                textView.layoutParams = LinearLayout.LayoutParams(
@@ -75,8 +76,8 @@ class MainMusician : AppCompatActivity() {
                     yCoord = coordinate.longitude
                     name = "You"
                 }
-                val success = false
-                while(!success){
+                val success = ObjectBoolean(false)
+                while(!success.success){
                     PushMusician(builder.build(), success).execute()
                     Thread.sleep(1000)
                 }
@@ -86,26 +87,32 @@ class MainMusician : AppCompatActivity() {
     }
 }
 
-private class PushMusician constructor(val musician: Musician, var success: Boolean) : AsyncTask<Void, Void, String>() {
+private class ObjectBoolean(var success: Boolean)
+
+private class PushMusician constructor(val musician: Musician, var success: ObjectBoolean) : AsyncTask<Void, Void, String>() {
     private var channel: ManagedChannel? = null
 
     override fun doInBackground(vararg poof: Void): String {
-            val host = "10.100.110.201"
+//            val host = "10.0.7.223"
 //        val host = "192.168.43.230"
+        val host = "35.228.95.2"
         val port = 50051
         return try {
+            Log.i("ForBuiled", "HERE")
             channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build()
             val stub = CommunicatorGrpc.newBlockingStub(channel)
             val request = musician
+            Log.i("ForBuiled", "Sending")
             stub.send(request)
-            success = true
+            Log.i("ForBuiled", "Sended")
+            success.success = true
             "OK"
         } catch (e: Exception) {
             val sw = StringWriter()
             val pw = PrintWriter(sw)
             e.printStackTrace(pw)
             pw.flush()
-            Log.i("error", e.message)
+            Log.i("Forerror", e.message)
             "Failed... : %s".format(sw)
         }
     }

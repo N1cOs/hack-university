@@ -16,10 +16,12 @@ agent.update(tag)
 media_list = []
 musician_list = []
 
-def check_media(id):
+def check_media(id) -> bool:
     resp = urllib.request.urlopen(recognition_url + base_url + id).read()
+
     print(resp)
-    #if resp is "yes":
+    if resp is "yes":
+        return True
         #musician_list.append(Musician( ... ))
 
 
@@ -29,8 +31,8 @@ def load_photos(ptr):
         if media in media_list:
             break
         media_list.append(media)
-        check_media(media.code)
-
+        if check_media(media.code):
+            push()
     return medias[1]
 
 

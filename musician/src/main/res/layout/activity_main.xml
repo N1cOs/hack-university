@@ -51,7 +51,7 @@
             <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="36dp"
-                    android:src="@drawable/list_arrow"
+                    android:src="@drawable/list_arrow_while"
                     android:background="@drawable/bottom_bg"
                     android:layout_gravity="bottom|center"/>
         </LinearLayout>

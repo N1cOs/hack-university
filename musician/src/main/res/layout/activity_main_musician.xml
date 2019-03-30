@@ -61,7 +61,7 @@
         I<ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/list_arrow"
+            android:src="@drawable/list_arrow_black"
             android:id="@+id/add_sing_button"
             android:layout_weight="0.9"/>
         <android.support.design.widget.TextInputLayout

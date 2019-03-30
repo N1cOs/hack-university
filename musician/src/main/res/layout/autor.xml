@@ -213,148 +213,68 @@
                       android:layout_marginLeft="26dp"
                       android:layout_marginRight="26dp">
             <LinearLayout android:orientation="horizontal"
-                          android:weightSum="4"
+                          android:weightSum="1"
                           android:layout_weight="1.6" android:layout_width="match_parent"
                           android:layout_height="match_parent">
-                <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1"
-                >
-                    <ImageView android:layout_width="match_parent"
-                               android:layout_height="match_parent"
-                               android:layout_weight="1"
-                               android:background="@drawable/rounded_rect_green"
-                               android:layout_marginRight="6dp"
-                    />
+                <Button android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_rect_green"
+                        android:layout_margin="3dp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:textColor="@color/autor_text"
+                        android:text="1$"
+                        android:layout_weight="0.21"
+                />
+                <Button android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_rect_green"
+                        android:layout_margin="3dp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:textColor="@color/autor_text"
+                        android:text="2$"
+                        android:layout_weight="0.21"
+                />
+                <Button android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_rect_green"
+                        android:layout_margin="3dp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:textColor="@color/autor_text"
+                        android:text="5$"
+                        android:layout_weight="0.21"
+                />
+                <Button android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_rect_green"
+                        android:layout_margin="3dp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:textColor="@color/autor_text"
+                        android:text="10$"
+                        android:layout_weight="0.21"
+                />
 
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignLeft="@+id/myImageView"
-                            android:layout_alignTop="@+id/myImageView"
-                            android:layout_alignRight="@+id/myImageView"
-                            android:layout_alignBottom="@+id/myImageView"
-                            android:layout_margin="1dp"
-                            android:textAlignment="center"
-                            android:layout_gravity="center"
-                            android:autoSizeMinTextSize="10sp"
-                            android:autoSizeMaxTextSize="20sp"
-                            android:autoSizeStepGranularity="2sp"
-                            android:textColor="@color/autor_text"
-                            android:text="1$"/>
-                </FrameLayout>
+                <Button android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_rect_blue_squared"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeStepGranularity="2sp"
+                        android:textColor="@color/autor_text"
+                        android:text="DONATE $"
+                        android:layout_weight="0.16"
+                />
 
-                <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1">
-                    <ImageView android:layout_width="match_parent"
-                               android:layout_height="match_parent"
-                               android:background="@drawable/rounded_rect_yellow"
-                               android:layout_marginRight="6dp"
-                               android:layout_weight="1"/>
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignLeft="@+id/myImageView"
-                            android:layout_alignTop="@+id/myImageView"
-                            android:layout_alignRight="@+id/myImageView"
-                            android:layout_alignBottom="@+id/myImageView"
-                            android:layout_margin="1dp"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:autoSizeMinTextSize="10sp"
-                            android:autoSizeMaxTextSize="20sp"
-                            android:autoSizeStepGranularity="2sp"
-                            android:textColor="@color/autor_text"
-                            android:text="2$"/>
-                </FrameLayout>
-
-                <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1">
-                    <ImageView android:layout_width="match_parent"
-                               android:layout_height="match_parent"
-                               android:background="@drawable/rounded_rect_orange"
-                               android:layout_marginRight="6dp"
-                               android:layout_weight="1"/>
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignLeft="@+id/myImageView"
-                            android:layout_alignTop="@+id/myImageView"
-                            android:layout_alignRight="@+id/myImageView"
-                            android:layout_alignBottom="@+id/myImageView"
-                            android:layout_margin="1dp"
-                            android:textAlignment="center"
-                            android:layout_gravity="center"
-                            android:autoSizeMinTextSize="10sp"
-                            android:autoSizeMaxTextSize="20sp"
-                            android:autoSizeStepGranularity="2sp"
-                            android:textColor="#ffffff"
-                            android:text="5$"/>
-                </FrameLayout>
-                <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1">
-                    <ImageView android:layout_width="match_parent"
-                               android:layout_height="match_parent"
-                               android:background="@drawable/rounded_rect_red"
-                               android:layout_marginRight="6dp"
-                               android:layout_weight="1"/>
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignLeft="@+id/myImageView"
-                            android:layout_alignTop="@+id/myImageView"
-                            android:layout_alignRight="@+id/myImageView"
-                            android:layout_alignBottom="@+id/myImageView"
-                            android:layout_margin="1dp"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:autoSizeMinTextSize="10sp"
-                            android:autoSizeMaxTextSize="20sp"
-                            android:autoSizeStepGranularity="2sp"
-                            android:textColor="#ffffff"
-                            android:text="10$"/>
-                </FrameLayout>
             </LinearLayout>
-            <LinearLayout android:orientation="horizontal" android:layout_weight="1"
-                          android:layout_width="match_parent" android:layout_height="match_parent">
-                <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="1">
-                    <ImageView android:layout_width="match_parent"
-                               android:layout_height="match_parent"
-                               android:layout_weight="1"
-                               android:background="@drawable/rounded_rect_blue_squared"
-                    />
-                    <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="1dp"
-                            android:layout_gravity="center"
-                            android:paddingLeft="3dp"
-                            android:autoSizeMinTextSize="10sp"
-                            android:autoSizeMaxTextSize="20sp"
-                            android:autoSizeStepGranularity="2sp"
-                            android:textColor="#ffffff"
-                            android:text="DONATE $"/>
-                </FrameLayout>
-            </LinearLayout>
-
         </LinearLayout>
+
         <LinearLayout android:orientation="horizontal" android:layout_weight="4.7"
                       android:layout_width="match_parent" android:layout_height="match_parent"/>
 
