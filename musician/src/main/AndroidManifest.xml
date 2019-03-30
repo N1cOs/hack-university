@@ -17,7 +17,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".MainMusician">
+                android:name=".MainMusician"
+                android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
 
         <meta-data

@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="6"
-                android:padding="5dp"
-                android:orientation="horizontal">
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+              android:weightSum="1"
+              android:layout_margin="5dp"
+              android:padding="8dp"
+              android:orientation="horizontal"
+              android:background="@drawable/layout_bg"
+>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/musicianImage"
-            android:src="@drawable/list_arrow"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:padding="2.5dp"
-            android:layout_weight="1.5"/>
+            android:layout_weight="0.15"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000" android:padding="0dp"/>
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1.1"
-            android:orientation="vertical">
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:layout_gravity="center"
+            android:orientation="vertical" android:paddingLeft="10dp">
 
         <TextView
                 android:id="@+id/musicianName"
@@ -36,23 +41,22 @@
                 android:layout_height="match_parent"/>
     </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="match_parent"
+    <LinearLayout android:layout_width="0dp"
+                  android:layout_height="wrap_content"
                   android:orientation="vertical"
-                  android:layout_weight="1.7">
+                  android:layout_gravity="center"
+                  android:layout_weight="0.14">
 
         <TextView
                 android:id="@+id/startTime"
                 android:text="12:00"
                 android:textSize="16sp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
         <TextView
                 android:id="@+id/endTime"
                 android:textSize="16sp"
-                android:layout_gravity="center"
                 android:text="13:00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -60,9 +64,8 @@
 
 
     <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.7"
-            android:padding="2.5dp"
-            android:src="@drawable/list_arrow"/>
+            android:layout_weight="0.1"
+            android:src="@drawable/info_symbol"/>
 </LinearLayout>

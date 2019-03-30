@@ -3,7 +3,6 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:background="@color/bgcolor"
               android:weightSum="1">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,6 +15,7 @@
         <Button
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:id="@+id/back_button"
                 android:background="@drawable/arrow_back"
                 android:drawableTint="@color/colorAccent"
                 android:layout_gravity="left"
@@ -41,7 +41,7 @@
                 android:id="@+id/location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="lo lo lo" />
+                android:hint="Place" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -54,9 +54,35 @@
                   android:layout_height="match_parent"/>
     </FrameLayout>
 
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:weightSum="1">
+        I<ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/list_arrow"
+            android:id="@+id/add_sing_button"
+            android:layout_weight="0.9"/>
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1">
+
+            <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="sing"
+                    android:id="@+id/sing_appender"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="Hello Nigga!"/>
+              android:text="Time"/>
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="0dp"
                  android:layout_weight="0.2">
@@ -72,8 +98,8 @@
 
                 <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="lololo" android:id="@+id/start_time"/>
+                        android:layout_height="match_parent"
+                        android:hint="start_time" android:id="@+id/start_time"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -84,15 +110,16 @@
 
                 <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="lololo" android:id="@+id/end_time"/>
+                        android:layout_height="match_parent"
+                        android:hint="end_time"
+                        android:id="@+id/end_time"/>
 
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     </FrameLayout>
 
     <Button android:id="@+id/addProfile"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             style="@style/Widget.AppCompat.Button.Colored"
